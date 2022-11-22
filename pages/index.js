@@ -35,9 +35,6 @@ export default function Home() {
       </video>
       
       </div>
-
-      
-
     </div>
   )
 }

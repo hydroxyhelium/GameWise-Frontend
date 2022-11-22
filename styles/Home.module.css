@@ -134,16 +134,37 @@
   min-height: 56.25vw; /* 100 * 9 / 16 */
 }
 
+.main_content{
+  margin-left: 10%;
+  margin-top: 15.625rem;
+  position: absolute;
+}
+
 .video_wrapper{
   position: relative;
   object-fit: cover;
   top: 0;
   bottom: 0;
-  height: 1000px;
+  height: 56.25rem;
   width: 100%;
   overflow: hidden;
 }
 
+.top_heading{ 
+  position: absolute;
+  top: 0;
+}
+
+.main_title{
+  font-size: 3.75rem;
+  font-family: 'fantasy';
+}
+
+.feature_line_1{
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+  margin-left: -1.875rem;
+}
 
 .main_vid{
   min-width: 100%; 
@@ -160,34 +181,54 @@
   /* transform: translate(-50%,-50%);  */
 }
 
-.top_heading{ 
-  position: absolute;
-  top: 0;
-}
-
-.main_content{
-  margin-left: 745px;
-  margin-top: 300px;
-  position: absolute;
-}
-
-.main_title{
-  font-size: 80px;
-  font-family: 'fantasy';
-}
-
-.feature_line_1{
-  font-size: 40px;
-  margin-top: 30px;
-  margin-left: -100px;
-}
-
 .getting_started_button{
-  margin-top: 40px;
-  margin-left: 120px;
+  margin-top: 1.875rem;
+  margin-left: 4.375rem;
 }
 
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 640px) {
+  
+  .main_content{
+    margin-left: 40%;
+    margin-top: 15.625rem;
+    position: absolute;
+  }
 
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+  .video_wrapper{
+    height: 53.125rem;
+    overflow: hidden;
+  }
+
+  .main_content{
+    margin-top: 15.625rem;
+    margin-left: 37.5rem;
+  }
+
+  .main_title{
+    font-size: 5rem;
+  }
+
+  .feature_line_1{
+    font-size: 2.5rem;
+    margin-top: 3.125rem;
+    margin-left: -6rem;
+  }
+
+  .getting_started_button{
+    margin-top: 3.125rem;
+    margin-left: 6.875rem;
+  }
+  
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
 
 
 /* CSS */
