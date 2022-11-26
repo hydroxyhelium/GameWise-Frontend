@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Video from '../Components/Video'
 
 
 import dynamic from 'next/dynamic'
@@ -31,8 +32,9 @@ export default function Home() {
 
       </div>
 
-      <video autoPlay muted src={"/main_vid.mp4"} loop className={styles.main_vid}>
-      </video>
+      {/* <video autoPlay muted src={"/main_vid.mp4"} loop className={styles.main_vid}>
+      </video> */}
+      <Video/>
       
       </div>
     </div>

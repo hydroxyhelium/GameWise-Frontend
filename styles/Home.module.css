@@ -226,7 +226,17 @@
   
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1400px) {
+
+  .video_wrapper{
+    height: 68.75rem;
+    overflow: hidden;
+  }
+
+  .main_content{
+    margin-top: 350px;
+    margin-left: 700px;
+  }
 
 }
 

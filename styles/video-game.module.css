@@ -1,0 +1,32 @@
+.video_wrapper{
+    position: relative;
+    object-fit: cover;
+    top: 0;
+    bottom: 0;
+    height: 56.25rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.main_content{
+    position: absolute;
+}
+
+@media only screen and (min-width: 992px) {
+
+    .video_wrapper{
+    height: 53.125rem; 
+    overflow: hidden;
+    }  
+  }
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1400px) {
+  
+    .video_wrapper{
+      height: 68.75rem;
+      overflow: hidden;
+    }  
+}
+
+
+  
