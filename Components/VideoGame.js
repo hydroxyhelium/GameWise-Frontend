@@ -1,6 +1,9 @@
 import axios from "axios"
+import { useState } from "react"
 
 export default function VideoGameComponent({gamelist}){
+
+    const [temp, setTemp]= useState(<div> </div>)
 
     if(gamelist.length!==0){
         var first_item = gamelist[0]
@@ -19,13 +22,23 @@ export default function VideoGameComponent({gamelist}){
             withCredentials:true
         }).then((response)=>
         {
-            console.log(response.data)
+            var temp_component = <div>
+                <div> 
+                {response.data.name}
+                </div> 
+                <div> 
+                    {response.data.summary}
+                </div>
+
+                <div> 
+                    <img src={response.data.url} alt="image not found"/>
+                </div>
+            </div>
+
+            setTemp(temp_component)
+            console.log(response)
         })   
     }
 
-    return(
-        <div>
-        Hi
-        </div> 
-    )
+    return temp
 }
