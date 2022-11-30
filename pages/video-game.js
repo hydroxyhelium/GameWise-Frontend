@@ -9,25 +9,22 @@ import { convertstring } from '../Components/helper'
 import VideoGameComponent from '../Components/VideoGame'
 
 export default function VideoGame(){
-    const [gamestringlist, setGamestringlist]=useState('')
     const [gamelist,setGamelist]=useState([])
+    const [fetch, setFetch]= useState(false)
 
     useEffect(()=>{
         //console.log(convertstring("\"hi\""))
         axios.get("http://localhost:8000/random").
         then((response)=>{
-            setGamestringlist(response.data)
             var temp = response.data
             console.log(temp)
+            console.log(convertstring(response.data))
             setGamelist(convertstring(response.data))
         }).catch((error)=>{
             console.log(error)
         })
     }, [])
 
-    useEffect(()=>{
-        console.log("hi, I'm changed")
-    }, [gamelist])
 
     return(
 <div className={styles.video_wrapper}>
@@ -41,7 +38,7 @@ export default function VideoGame(){
             We can then, output a video game that you will enjoy for sure!   
         </div>
 
-        <VideoGameComponent gamelist={gamelist} /> 
+        <VideoGameComponent gamelist={gamelist} fetch={fetch} setFetch={setFetch}/> 
         
     </div>
 

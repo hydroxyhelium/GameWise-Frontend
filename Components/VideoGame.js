@@ -1,44 +1,74 @@
 import axios from "axios"
 import { useState } from "react"
 
-export default function VideoGameComponent({gamelist}){
+const getGameData = async (gamelist, setTemp) =>{
 
-    const [temp, setTemp]= useState(<div> </div>)
+    var divArray = []
 
-    if(gamelist.length!==0){
-        var first_item = gamelist[0]
-
-        console.log(first_item)
-        var request = {
-            'game_name': first_item
+    for(var i = 0; i<10; ++i){
+        var element = gamelist[i]
+        var req = {
+            'game_name':element
         }
-        axios.get('http://localhost:8000/',{
-            withCredentials:true
-        }).then((response)=>{
-            console.log('successfuly created cookie')
-        })
 
-        axios.post('http://localhost:8000/games',request,{
-            withCredentials:true
-        }).then((response)=>
-        {
-            var temp_component = <div>
+        var res = await axios.post('http://localhost:8000/games',req,{
+            withCredentials:true})
+
+        var properRes = res.data
+
+        console.log(properRes)
+
+        if(properRes.name!==""){
+            divArray.push(<div key={i}>
                 <div> 
-                {response.data.name}
-                </div> 
-                <div> 
-                    {response.data.summary}
+                    {properRes.name}
                 </div>
 
-                <div> 
-                    <img src={response.data.url} alt="image not found"/>
+                <div>
+                    <img src={properRes.url} alt="image not found"/>
                 </div>
-            </div>
+                <div>
+                {properRes.summary}
+                </div>
+            </div>)
 
-            setTemp(temp_component)
-            console.log(response)
-        })   
+        }
     }
 
-    return temp
+    setTemp(divArray)
+
+    console.log("done.")
+    // if(res.status == 200){
+    //     console.log(res.status)
+    // }    
+}
+
+export default function VideoGameComponent({gamelist, fetch, setFetch}){
+
+    // const [temp, setTemp]= useState(<div> </div>)
+    const [temp, setTemp]= useState([])
+
+    console.log(fetch)
+
+    if(gamelist.length!==0 && (!fetch)){
+
+        setFetch(true)
+        console.log(gamelist)
+        const promises = [];
+
+        axios.get('http://localhost:8000/',{
+                withCredentials:true
+        }).then((response)=>{
+            console.log("cookie recieved successfully")
+        })
+
+        getGameData(gamelist,setTemp)
+        setFetch(true)
+    }
+
+    console.log("hi")
+
+    return <div>
+        {temp}
+    </div>
 }
