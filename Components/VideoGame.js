@@ -1,9 +1,10 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import styles from "./VideoGame.module.css"
 
 const getGameData = async (gamelist, setTemp) =>{
 
-    var divArray = []
+    var Array = []
 
     for(var i = 0; i<10; ++i){
         var element = gamelist[i]
@@ -19,23 +20,11 @@ const getGameData = async (gamelist, setTemp) =>{
         console.log(properRes)
 
         if(properRes.name!==""){
-            divArray.push(<div key={i}>
-                <div> 
-                    {properRes.name}
-                </div>
-
-                <div>
-                    <img src={properRes.url} alt="image not found"/>
-                </div>
-                <div>
-                {properRes.summary}
-                </div>
-            </div>)
-
+            Array.push(properRes)
         }
     }
 
-    setTemp(divArray)
+    setTemp(Card(Array))
 
     console.log("done.")
     // if(res.status == 200){
@@ -43,30 +32,65 @@ const getGameData = async (gamelist, setTemp) =>{
     // }    
 }
 
-export default function VideoGameComponent({gamelist, fetch, setFetch}){
+const Card = (temp)=>{
+    
+    console.log("called")
+    if (Array.isArray(temp)){
+        var element = temp[0]
+        return(<div>
 
-    // const [temp, setTemp]= useState(<div> </div>)
-    const [temp, setTemp]= useState([])
+            <div className={styles.mainHeading}>
+                Personalize your video gaming experience
+            </div>
 
-    console.log(fetch)
+            <div className={styles.subHeading}>
+                Here is a list of video games, please indicate how much you like or dislike them. 
+            </div>
 
-    if(gamelist.length!==0 && (!fetch)){
-
-        setFetch(true)
-        console.log(gamelist)
-        const promises = [];
-
-        axios.get('http://localhost:8000/',{
-                withCredentials:true
-        }).then((response)=>{
-            console.log("cookie recieved successfully")
-        })
-
-        getGameData(gamelist,setTemp)
-        setFetch(true)
+            <div className={styles.title}>
+                {element.name}
+            </div>
+            <div className={styles.imageHolder}>
+                <img src={element.url} className={styles.image}/>
+            </div>
+            <div className={styles.summary}>
+                {element.summary}
+            </div>
+        </div>)
     }
 
-    console.log("hi")
+    return(<div>
+        Waiting for content
+    </div>)
+}
+
+
+export default function VideoGameComponent({gamelist, fetch, setFetch}){
+    console.log("called")
+    console.log(fetch)
+    const [temp, setTemp]= useState(<div> </div>)
+
+    useEffect(()=>{
+        if(gamelist.length!==0 && (!fetch)){
+
+            setFetch(true)
+            console.log(gamelist)
+            const promises = [];
+    
+            axios.get('http://localhost:8000/',{
+                    withCredentials:true
+            }).then((response)=>{
+                console.log("cookie recieved successfully")
+            })
+    
+            getGameData(gamelist,setTemp)
+            setFetch(true)
+    }
+    
+    },[gamelist])
+
+    
+    // const [temp, setTemp]= useState(<div> </div>)
 
     return <div>
         {temp}

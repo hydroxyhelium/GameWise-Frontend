@@ -29,15 +29,7 @@ export default function VideoGame(){
     return(
 <div className={styles.video_wrapper}>
     <div className={styles.main_content}>
-        <div>
-            Get a Personalized Video Game Recommendation!
-        </div>
-
-        <div>
-            How this works is we will give you a list of 10 games and you can tell us weather you like or dislike them. 
-            We can then, output a video game that you will enjoy for sure!   
-        </div>
-
+        
         <VideoGameComponent gamelist={gamelist} fetch={fetch} setFetch={setFetch}/> 
         
     </div>

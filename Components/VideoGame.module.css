@@ -1,0 +1,31 @@
+
+.mainHeading{
+    margin-top: 20%;
+    margin-left: 10%;
+    font-size: 25px;
+    font-family: Verdana;
+}
+
+.subHeading{
+    margin-top: 15%;
+    font-family: Verdana;
+    font-size: 18px;
+    margin-left: 6%; 
+}
+
+.title{
+    margin-top: 15%;
+    margin-left: 9%;
+    font-size: 23px;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+.imageHolder{
+    margin-top: 15%;
+    margin-left: 15%;
+}
+
+.summary{
+    margin-top: 5%;
+    margin-left: 3%;
+}

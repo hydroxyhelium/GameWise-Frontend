@@ -3,7 +3,7 @@
     object-fit: cover;
     top: 0;
     bottom: 0;
-    height: 900px;
+    height: 3000px;
     width: 100%;
     overflow: hidden;
 }
@@ -15,7 +15,7 @@
 @media only screen and (min-width: 992px) {
 
     .video_wrapper{
-    height: 1200px; 
+    height: 3000px; 
     overflow: hidden;
     }  
   }
@@ -23,7 +23,7 @@
 @media only screen and (min-width: 1400px) {
   
     .video_wrapper{
-      height: 1400px;
+      height: 3000px;
       overflow: hidden;
     }  
 }
