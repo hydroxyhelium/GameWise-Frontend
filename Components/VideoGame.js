@@ -2,8 +2,6 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import styles from "./VideoGame.module.css"
 
-
-
 var games_liked = []
 var games_disliked = []
 var global_array=[]
@@ -36,9 +34,50 @@ const getGameData = async (gamelist, setTemp, index, setIndex) =>{
     setTemp(Card(Array, index, setIndex))
 
     console.log("done.")
-    // if(res.status == 200){
-    //     console.log(res.status)
-    // }    
+}
+
+
+const getRecommendation = async (setTemp)=>{
+    var request = {
+        "likes":games_liked,
+        "dislikes":games_disliked
+    }
+
+    var res = await axios.post("http://localhost:8000/recommend",request)
+    var string = res.data.trim()
+    console.log(string)
+    var req = {
+        'game_name':string
+    }
+
+    var res = await axios.post('http://localhost:8000/games',req,{
+        withCredentials:true})
+
+    var object = res.data
+
+    if(object.name !== ""){
+        setTemp(<div>
+            <div className={styles.mainHeading}>
+                Here is the recommendation using AI
+            </div>
+            <u>
+            <div className={styles.title}>
+                {object.name}
+            </div>
+            </u>
+            <div className={styles.imageHolder}>
+                <img src={object.url} alt="Image not found"/>
+            </div>
+            <div className={styles.summary}>
+                {object.summary}
+            </div>
+        </div>)
+    }
+    else{
+        <div>
+            Sorry a good recommendation could not be found
+        </div>
+    }
 }
 
 const Card = (temp, index, setIndex)=>{
@@ -128,9 +167,10 @@ export default function VideoGameComponent({gamelist, fetch, setFetch}){
             setTemp(Card(global_array, index, setIndex))
         }
 
-        if(index == global_array.length){
+        if(fetch && index == global_array.length){
             console.log(games_liked)
             console.log(games_disliked)
+            getRecommendation(setTemp)
         }
         
     },[index])
