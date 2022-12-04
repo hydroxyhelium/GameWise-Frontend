@@ -16,7 +16,7 @@ export default function Home() {
       <div className={styles.video_wrapper}> 
 
       <div className={styles.main_content}>
-        <div className={styles.main_title}> 
+        <div className="text-8xl leading-tight content-center"> 
         GameWise
         </div>
 
